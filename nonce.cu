@@ -147,7 +147,7 @@ __device__ void cuda_sha1_final(CUDA_SHA1_CONTEXT* context, BYTE hash[])
 	context->data[56] = context->bit_length >> 56;
 	cuda_sha1_transform(context, context->data);
 
-	// Inverseaza toti bitii la copierea starii finale in hash-ul de iesire.
+	// Inverseaza toti octetii la copierea starii finale in hash-ul de iesire.
 	for (i = 0; i < 4; ++i) {
 		hash[i] = (context->state[0] >> (24 - i * 8)) & 0x000000ff;
 		hash[i + 4] = (context->state[1] >> (24 - i * 8)) & 0x000000ff;
@@ -225,9 +225,9 @@ __global__ void find_nonce(size_t* result, BYTE* hash, bool* found, size_t warp)
 	// Verifica daca hash-ul calculat se termina cu numarul necesar de zero-uri
 	bool suffix_matches = true;
 	for (int i = 0; i < ZEROS_TO_FIND/2+1; i++) {
-		// Verifica ultimii biti ZEROS_TO_FIND
+		// Verifica ultimii octeti ZEROS_TO_FIND
 		if (checksum[SHA_SIZE - i - 1] != 0 || checksum[SHA_SIZE- i-ZEROS_TO_FIND/2- ZEROS_TO_FIND%2] != 0) {
-			suffix_matches = false; // Toti bitii trebuie sa fie exact zero
+			suffix_matches = false; // Toti octetii trebuie sa fie exact zero
 			break;
 		}
 	}
@@ -262,7 +262,7 @@ void get_optimal_sizes(int* grid_size, int* block_size) {
 int main(int argc, char** argv) {
 	bool host_found = false;          // Host flag, care indica daca un nonce a fost gasit
 	size_t host_nonce = 0;            // Variabila care stocheaza nonce-ul rezultat
-	size_t nonce_size = sizeof(size_t); // Marimea nonce-ului in biti
+	size_t nonce_size = sizeof(size_t); // Marimea nonce-ului in octeti
 	int grid_size;                 // Dimensiunea grid-ului pentru execuția kernelului CUDA
 	int block_size;                // Dimensiunea block-ului pentru execuția kernelului CUDA
 
