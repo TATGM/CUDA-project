@@ -1,4 +1,9 @@
-Pentru buffer-ul Tudor hash-ul care se incheie in 4 zero-uri s-a terminat calculand:
+Pentru buffer-ul Tudor cu marimea 12 hash-ul care se incheie in 4 zero-uri s-a terminat calculand:
 un hashrate de 177977231 hashuri/secunda. Durata a fost de 46.21 secunde
 Thread-uri cu marimea gridului de 2048 si marimea block-ului de 768
 Nonce: 8223243884. Digest: a5354b023760d78402327eef36ca5b3900000000
+
+Pentru buffer-ul Tudor cu marimea 20 hash-ul care se incheie in 4 zero-uri s-a terminat calculand:
+un hashrate de 168574674 hashuri/secunda. Durata a fost de 47.22 secunde
+Thread-uri cu marimea gridului de 1024 si marimea block-ului de 768
+Nonce: 7959864702. Digest: f762361a3f9f1b0a569215486ed2165800000000
